@@ -60,7 +60,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip1.Location = new Point(3, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(978, 24);
+            menuStrip1.Size = new Size(1078, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -117,9 +117,9 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { StatusToolStripStatusLabel, LogInToolStripStatusLabel });
-            statusStrip1.Location = new Point(3, 739);
+            statusStrip1.Location = new Point(3, 839);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(978, 22);
+            statusStrip1.Size = new Size(1078, 22);
             statusStrip1.TabIndex = 1;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -163,7 +163,7 @@
             tableLayoutPanel1.Padding = new Padding(2);
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(978, 35);
+            tableLayoutPanel1.Size = new Size(1078, 35);
             tableLayoutPanel1.TabIndex = 2;
             // 
             // AddNewButton
@@ -262,14 +262,14 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(978, 680);
+            dataGridView1.Size = new Size(1078, 780);
             dataGridView1.TabIndex = 7;
             // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(984, 761);
+            ClientSize = new Size(1084, 861);
             Controls.Add(dataGridView1);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(statusStrip1);
@@ -279,6 +279,7 @@
             Padding = new Padding(3, 0, 3, 0);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Customer Form";
+            Load += CustomerForm_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);
