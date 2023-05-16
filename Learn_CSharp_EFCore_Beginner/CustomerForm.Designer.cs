@@ -57,6 +57,7 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip1.Location = new Point(3, 0);
             menuStrip1.Name = "menuStrip1";
@@ -116,10 +117,11 @@
             // 
             // statusStrip1
             // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { StatusToolStripStatusLabel, LogInToolStripStatusLabel });
-            statusStrip1.Location = new Point(3, 839);
+            statusStrip1.Location = new Point(3, 825);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1078, 22);
+            statusStrip1.Size = new Size(1078, 25);
             statusStrip1.TabIndex = 1;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -129,13 +131,13 @@
             StatusToolStripStatusLabel.ForeColor = Color.ForestGreen;
             StatusToolStripStatusLabel.Image = Properties.Resources.play_4_24;
             StatusToolStripStatusLabel.Name = "StatusToolStripStatusLabel";
-            StatusToolStripStatusLabel.Size = new Size(56, 17);
+            StatusToolStripStatusLabel.Size = new Size(60, 20);
             StatusToolStripStatusLabel.Text = "Status";
             // 
             // LogInToolStripStatusLabel
             // 
             LogInToolStripStatusLabel.Name = "LogInToolStripStatusLabel";
-            LogInToolStripStatusLabel.Size = new Size(16, 17);
+            LogInToolStripStatusLabel.Size = new Size(16, 20);
             LogInToolStripStatusLabel.Text = "...";
             // 
             // tableLayoutPanel1
@@ -213,6 +215,7 @@
             SearchButton.TabIndex = 4;
             SearchButton.Text = "Search";
             SearchButton.UseVisualStyleBackColor = true;
+            SearchButton.Click += SearchButton_Click;
             // 
             // ExportToExcelButton
             // 
@@ -227,6 +230,7 @@
             ExportToExcelButton.TabIndex = 5;
             ExportToExcelButton.Text = "Export To Excel";
             ExportToExcelButton.UseVisualStyleBackColor = false;
+            ExportToExcelButton.Click += ExportToExcelButton_Click;
             // 
             // KeywordTextBox
             // 
@@ -237,6 +241,8 @@
             KeywordTextBox.Name = "KeywordTextBox";
             KeywordTextBox.Size = new Size(308, 29);
             KeywordTextBox.TabIndex = 0;
+            KeywordTextBox.DoubleClick += KeywordTextBox_DoubleClick;
+            KeywordTextBox.KeyDown += KeywordTextBox_KeyDown;
             // 
             // label1
             // 
@@ -260,16 +266,17 @@
             dataGridView1.Location = new Point(3, 59);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1078, 780);
+            dataGridView1.Size = new Size(1078, 766);
             dataGridView1.TabIndex = 7;
             // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1084, 861);
+            ClientSize = new Size(1084, 850);
             Controls.Add(dataGridView1);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(statusStrip1);
