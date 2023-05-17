@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Learn_CSharp_EFCore_Beginner.Models.Db;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Learn_CSharp_EFCore_Beginner
 {
@@ -93,6 +94,50 @@ namespace Learn_CSharp_EFCore_Beginner
             }
 
             createAutoComplete();
+        }
+
+
+        /////////////////////////////////CRUD/////////////////////////////////////////////////////////////////////////////////////////////
+        private string selectedID = ""; // Waiting for datagridview clicked
+        private string whichCRUD = ""; // Waiting for Add, Update, Delete button clicked
+
+
+        private void openCustomerForm_CRUD(string whichCRUD, string selectedID)
+        {
+            if(whichCRUD.ToUpper().Equals("UPDATE") || whichCRUD.ToUpper().Equals("DELETE"))
+            {
+                if(string.IsNullOrEmpty(selectedID.Trim())) 
+                {
+                    MessageBox.Show("ID NOT FOUND.","Open CRUD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if(dataGridView1.Rows.Count == 0 || dataGridView1.SelectedRows.Count == 0) 
+                {
+                    MessageBox.Show("Please select an item from the list", "Open CRUD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
+            CustomerForm_CRUD f = new CustomerForm_CRUD();
+            f.ShowDialog();
+
+            if(center.isExecuted == true) 
+            {
+                // Refresh the main form after Executed data.
+                loadData("");
+            }
+        }
+
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                string? v = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                selectedID = v;
+                //MessageBox.Show(selectedID);
+            }
         }
 
         /////////////////////////////////Auto Complete/////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,14 +276,6 @@ namespace Learn_CSharp_EFCore_Beginner
         }
 
 
-        /////////////////////////////////About Button/////////////////////////////////////////////////////////////////////////////////////////////
-        private void aboutMyAPpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string msg = "My Application Version 1.0.0";
-            string caption = "About my application";
-            MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
 
         /////////////////////////////////Add New Button/////////////////////////////////////////////////////////////////////////////////////////////
         private void addNewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -247,27 +284,48 @@ namespace Learn_CSharp_EFCore_Beginner
         }
         private void AddNewButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Add New");
+                whichCRUD = "ADD";
+                openCustomerForm_CRUD(whichCRUD,"");
         }
 
-        /////////////////////////////////Add New Button/////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////Update Button/////////////////////////////////////////////////////////////////////////////////////////////
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateButton.PerformClick();
         }
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Update");
+                whichCRUD = "UPDATE";
+                openCustomerForm_CRUD(whichCRUD, selectedID);
         }
 
-        /////////////////////////////////Add New Button/////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////Delete Button/////////////////////////////////////////////////////////////////////////////////////////////
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteButton.PerformClick();
         }
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Delete");
+                whichCRUD = "DELETE";
+                openCustomerForm_CRUD(whichCRUD, selectedID);
+        }
+
+        /////////////////////////////////DataGridView1 Cell Mouse Double Click/////////////////////////////////////////////////////////////////////////////////////////////
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                whichCRUD = "UPDATE";
+                openCustomerForm_CRUD(whichCRUD, selectedID);
+            }
+        }
+
+        /////////////////////////////////About Button/////////////////////////////////////////////////////////////////////////////////////////////
+        private void aboutMyAPpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string msg = "My Application Version 1.0.0";
+            string caption = "About my application";
+            MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /////////////////////////////////Log-Out Button/////////////////////////////////////////////////////////////////////////////////////////////
@@ -284,6 +342,7 @@ namespace Learn_CSharp_EFCore_Beginner
             closeMode = "exit";
             Application.Exit();
         }
+
 
     }
 }

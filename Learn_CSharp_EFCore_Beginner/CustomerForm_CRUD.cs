@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace Learn_CSharp_EFCore_Beginner
 {
-    public partial class CustomerForm_Execute : Form
+    public partial class CustomerForm_CRUD : Form
     {
-        public CustomerForm_Execute()
+        public CustomerForm_CRUD()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;    
         }
     }
 }

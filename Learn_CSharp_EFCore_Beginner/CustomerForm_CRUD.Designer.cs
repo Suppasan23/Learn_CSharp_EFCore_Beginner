@@ -1,6 +1,6 @@
 ﻿namespace Learn_CSharp_EFCore_Beginner
 {
-    partial class CustomerForm_Execute
+    partial class CustomerForm_CRUD
     {
         /// <summary>
         /// Required designer variable.
