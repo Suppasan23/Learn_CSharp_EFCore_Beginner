@@ -35,20 +35,20 @@ namespace Learn_CSharp_EFCore_Beginner
 
             try
             {
-                if (this.theCRUD.ToUpper().Equals("VIEW")) 
+                if (this.theCRUD.ToUpper().Equals("VIEW"))
                 {
                     Text += " " + "(Read Only)";
                     ChooseImageButton.Enabled = false;
                     ClearImageButton.Enabled = false;
-                    ExecuteButton.Enabled = false;  
+                    ExecuteButton.Enabled = false;
 
-                    foreach(var txt in this.Controls.OfType<TextBox>())
+                    foreach (var txt in this.Controls.OfType<TextBox>())
                     {
                         txt.Enabled = false;
                     }
                 }
 
-                if(string.IsNullOrEmpty(this.theID))
+                if (string.IsNullOrEmpty(this.theID))
                 {
                     // ADD NEW
                     CustomerIDTextBox.Enabled = true;
@@ -83,8 +83,19 @@ namespace Learn_CSharp_EFCore_Beginner
                                PostalCode = c.PostalCode,
                                Country = c.Country,
                                Phone = c.Phone,
-                               
+                               Picture = c.Picture
                            };
+                CustomerIDTextBox.Text = data.FirstOrDefault().CustomerId.ToString();
+                CompanyNameTextBox.Text = data.FirstOrDefault().CompanyName.ToString();
+                ContactNameTextBox.Text = data.FirstOrDefault().ContactName.ToString();
+                ContactTitleTextBox.Text = data.FirstOrDefault().ContactTitle.ToString();
+                AddressTextBox.Text = data.FirstOrDefault().Address.ToString();
+                CityTextBox.Text = data.FirstOrDefault().City.ToString();
+                RegionTextBox.Text = (DBNull.Value.Equals(data.FirstOrDefault().Region) || string.IsNullOrEmpty(data.FirstOrDefault().Region)) ? "-" : data.FirstOrDefault().Region.ToString();
+                PostalCodeTextBox.Text = data.FirstOrDefault().PostalCode.ToString();
+                CountryTextBox.Text = data.FirstOrDefault().Country.ToString();
+                PhoneTextBox.Text = data.FirstOrDefault().Phone.ToString();
+                PictureBox.Image = (data.FirstOrDefault().Picture == null) ? null : byteArraytoImage(data.FirstOrDefault().Picture);
 
             }
             catch (Exception ex)
@@ -93,10 +104,10 @@ namespace Learn_CSharp_EFCore_Beginner
             }
         }
 
-        //////////////////////////////Byte to Image////////////////////////////////////////////////////////////////////////
+        //////////////////////////////ByteArray to Image////////////////////////////////////////////////////////////////////////
         private Image byteArraytoImage(byte[] input)
-        { 
-            using(var ms = new MemoryStream(input))
+        {
+            using (var ms = new MemoryStream(input))
             {
                 var image = Image.FromStream(ms);
                 return image;
