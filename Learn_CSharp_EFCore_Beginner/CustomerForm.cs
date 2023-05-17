@@ -30,7 +30,7 @@ namespace Learn_CSharp_EFCore_Beginner
             loadData("");
         }
 
-        /////////////////////////////////Load Data Section/////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////Load Data/////////////////////////////////////////////////////////////////////////////////////////////
 
         LearnCsharpEfcoreBeginnerDbContext db = new LearnCsharpEfcoreBeginnerDbContext();
 
@@ -65,8 +65,8 @@ namespace Learn_CSharp_EFCore_Beginner
                 if (data.Count() > 0)
                 {
                     dataGridView1.DataSource = data.ToList();
-                    if(dataGridView1.Rows.Count > 0)
-                    { 
+                    if (dataGridView1.Rows.Count > 0)
+                    {
                         dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
                         dataGridView1.Columns[0].HeaderText = "Customer ID";
                         dataGridView1.Columns[1].HeaderText = "Company Name";
@@ -95,7 +95,7 @@ namespace Learn_CSharp_EFCore_Beginner
             createAutoComplete();
         }
 
-        /////////////////////////////////Auto Complete Section/////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////Auto Complete/////////////////////////////////////////////////////////////////////////////////////////////
         private void createAutoComplete()
         {
             try
@@ -116,7 +116,7 @@ namespace Learn_CSharp_EFCore_Beginner
         }
 
 
-        /////////////////////////////////Search Section/////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////Search/////////////////////////////////////////////////////////////////////////////////////////////
         private void SearchButton_Click(object sender, EventArgs e)
         {
             serachData();
@@ -154,7 +154,7 @@ namespace Learn_CSharp_EFCore_Beginner
 
 
 
-        /////////////////////////////////Export to Excel Section/////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////Export to Excel/////////////////////////////////////////////////////////////////////////////////////////////
 
         DataTable dt = new DataTable("Customers");
 
@@ -189,7 +189,7 @@ namespace Learn_CSharp_EFCore_Beginner
         private void ExportToExcelButton_Click(object sender, EventArgs e)
         {
             string caption = "Export to Excel.";
-            if(dt == null || dt.Rows.Count == 0)
+            if (dt == null || dt.Rows.Count == 0)
             {
                 MessageBox.Show("No records found.", caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -197,16 +197,16 @@ namespace Learn_CSharp_EFCore_Beginner
 
             try
             {
-                using(var workbook = new ClosedXML.Excel.XLWorkbook())
+                using (var workbook = new ClosedXML.Excel.XLWorkbook())
                 {
                     workbook.Worksheets.Add(dt);
-                    using(SaveFileDialog sfd = new SaveFileDialog()) 
+                    using (SaveFileDialog sfd = new SaveFileDialog())
                     {
                         sfd.FileName = "ร้านธีรภัทร์";
                         sfd.Filter = "Excel Workbook (*.xlsx) | *.xlsx";
                         sfd.Title = "C# Export to Excel";
 
-                        if(sfd.ShowDialog() == DialogResult.OK)
+                        if (sfd.ShowDialog() == DialogResult.OK)
                         {
                             string strFilename;
                             string msg = "Export done successfully! " + Environment.NewLine;
@@ -224,10 +224,65 @@ namespace Learn_CSharp_EFCore_Beginner
                 }
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+        /////////////////////////////////About Button/////////////////////////////////////////////////////////////////////////////////////////////
+        private void aboutMyAPpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string msg = "My Application Version 1.0.0";
+            string caption = "About my application";
+            MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        /////////////////////////////////Add New Button/////////////////////////////////////////////////////////////////////////////////////////////
+        private void addNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddNewButton.PerformClick();
+        }
+        private void AddNewButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Add New");
+        }
+
+        /////////////////////////////////Add New Button/////////////////////////////////////////////////////////////////////////////////////////////
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateButton.PerformClick();
+        }
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Update");
+        }
+
+        /////////////////////////////////Add New Button/////////////////////////////////////////////////////////////////////////////////////////////
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteButton.PerformClick();
+        }
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Delete");
+        }
+
+        /////////////////////////////////Log-Out Button/////////////////////////////////////////////////////////////////////////////////////////////
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        /////////////////////////////////Exit Button/////////////////////////////////////////////////////////////////////////////////////////////
+        private string closeMode = "";
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closeMode = "exit";
+            Application.Exit();
         }
 
     }

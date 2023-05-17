@@ -75,32 +75,37 @@
             // addNewToolStripMenuItem
             // 
             addNewToolStripMenuItem.Name = "addNewToolStripMenuItem";
-            addNewToolStripMenuItem.Size = new Size(121, 22);
+            addNewToolStripMenuItem.Size = new Size(180, 22);
             addNewToolStripMenuItem.Text = "Add new";
+            addNewToolStripMenuItem.Click += addNewToolStripMenuItem_Click;
             // 
             // updateToolStripMenuItem
             // 
             updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            updateToolStripMenuItem.Size = new Size(121, 22);
+            updateToolStripMenuItem.Size = new Size(180, 22);
             updateToolStripMenuItem.Text = "Update";
+            updateToolStripMenuItem.Click += updateToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(121, 22);
+            deleteToolStripMenuItem.Size = new Size(180, 22);
             deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(121, 22);
+            logoutToolStripMenuItem.Size = new Size(180, 22);
             logoutToolStripMenuItem.Text = "Log-out";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(121, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // aboutToolStripMenuItem
             // 
@@ -114,6 +119,7 @@
             aboutMyAPpToolStripMenuItem.Name = "aboutMyAPpToolStripMenuItem";
             aboutMyAPpToolStripMenuItem.Size = new Size(150, 22);
             aboutMyAPpToolStripMenuItem.Text = "About my app";
+            aboutMyAPpToolStripMenuItem.Click += aboutMyAPpToolStripMenuItem_Click;
             // 
             // statusStrip1
             // 
@@ -179,6 +185,7 @@
             AddNewButton.TabIndex = 1;
             AddNewButton.Text = "Add New";
             AddNewButton.UseVisualStyleBackColor = true;
+            AddNewButton.Click += AddNewButton_Click;
             // 
             // UpdateButton
             // 
@@ -191,6 +198,7 @@
             UpdateButton.TabIndex = 2;
             UpdateButton.Text = "Update";
             UpdateButton.UseVisualStyleBackColor = true;
+            UpdateButton.Click += UpdateButton_Click;
             // 
             // DeleteButton
             // 
@@ -203,6 +211,7 @@
             DeleteButton.TabIndex = 3;
             DeleteButton.Text = "Delete";
             DeleteButton.UseVisualStyleBackColor = true;
+            DeleteButton.Click += DeleteButton_Click;
             // 
             // SearchButton
             // 
