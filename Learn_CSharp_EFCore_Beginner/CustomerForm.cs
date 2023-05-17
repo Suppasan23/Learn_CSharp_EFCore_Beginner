@@ -24,14 +24,12 @@ namespace Learn_CSharp_EFCore_Beginner
             this.Size = new Size(1100, 900);
         }
 
-
-
         private void CustomerForm_Load(object sender, EventArgs e)
         {
             loadData("");
         }
 
-        /////////////////////////////////Load Data/////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////Load/////////////////////////////////////////////////////////////////////////////////////////////
 
         LearnCsharpEfcoreBeginnerDbContext db = new LearnCsharpEfcoreBeginnerDbContext();
 
@@ -98,15 +96,15 @@ namespace Learn_CSharp_EFCore_Beginner
 
 
         /////////////////////////////////CRUD/////////////////////////////////////////////////////////////////////////////////////////////
-        private string selectedID = ""; // Waiting for datagridview clicked
+        private string WhichID = ""; // Waiting for datagridview clicked
         private string whichCRUD = ""; // Waiting for Add, Update, Delete button clicked
 
 
-        private void openCustomerForm_CRUD(string whichCRUD, string selectedID)
+        private void openCustomerForm_CRUD(string whichCRUD, string WhichID)
         {
             if(whichCRUD.ToUpper().Equals("UPDATE") || whichCRUD.ToUpper().Equals("DELETE"))
             {
-                if(string.IsNullOrEmpty(selectedID.Trim())) 
+                if(string.IsNullOrEmpty(WhichID.Trim())) 
                 {
                     MessageBox.Show("ID NOT FOUND.","Open CRUD", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -119,10 +117,10 @@ namespace Learn_CSharp_EFCore_Beginner
                 }
             }
 
-            CustomerForm_CRUD f = new CustomerForm_CRUD();
+            CustomerForm_CRUD f = new CustomerForm_CRUD(whichCRUD, WhichID);
             f.ShowDialog();
 
-            if(center.isExecuted == true) 
+            if(center.isExecuted == true)
             {
                 // Refresh the main form after Executed data.
                 loadData("");
@@ -135,8 +133,8 @@ namespace Learn_CSharp_EFCore_Beginner
             if (e.RowIndex != -1)
             {
                 string? v = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-                selectedID = v;
-                //MessageBox.Show(selectedID);
+                WhichID = v;
+                //MessageBox.Show(WhichID);
             }
         }
 
@@ -284,8 +282,8 @@ namespace Learn_CSharp_EFCore_Beginner
         }
         private void AddNewButton_Click(object sender, EventArgs e)
         {
-                whichCRUD = "ADD";
-                openCustomerForm_CRUD(whichCRUD,"");
+            whichCRUD = "ADD";
+            openCustomerForm_CRUD(whichCRUD,"");
         }
 
         /////////////////////////////////Update Button/////////////////////////////////////////////////////////////////////////////////////////////
@@ -295,8 +293,8 @@ namespace Learn_CSharp_EFCore_Beginner
         }
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-                whichCRUD = "UPDATE";
-                openCustomerForm_CRUD(whichCRUD, selectedID);
+            whichCRUD = "UPDATE";
+            openCustomerForm_CRUD(whichCRUD, WhichID);
         }
 
         /////////////////////////////////Delete Button/////////////////////////////////////////////////////////////////////////////////////////////
@@ -306,8 +304,8 @@ namespace Learn_CSharp_EFCore_Beginner
         }
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-                whichCRUD = "DELETE";
-                openCustomerForm_CRUD(whichCRUD, selectedID);
+            whichCRUD = "DELETE";
+            openCustomerForm_CRUD(whichCRUD, WhichID);
         }
 
         /////////////////////////////////DataGridView1 Cell Mouse Double Click/////////////////////////////////////////////////////////////////////////////////////////////
@@ -316,7 +314,7 @@ namespace Learn_CSharp_EFCore_Beginner
             if (e.RowIndex != -1)
             {
                 whichCRUD = "UPDATE";
-                openCustomerForm_CRUD(whichCRUD, selectedID);
+                openCustomerForm_CRUD(whichCRUD, WhichID);
             }
         }
 

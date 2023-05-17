@@ -308,7 +308,7 @@
             ExecuteButton.Text = "Execute";
             ExecuteButton.UseVisualStyleBackColor = true;
             // 
-            // CustomerForm_Execute
+            // CustomerForm_CRUD
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -338,8 +338,9 @@
             Controls.Add(AddressTextBox);
             Controls.Add(AddressLabel);
             Controls.Add(panel1);
-            Name = "CustomerForm_Execute";
+            Name = "CustomerForm_CRUD";
             Text = "Customer Form Execute";
+            Load += CustomerForm_CRUD_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             PictureBox.ResumeLayout(false);
