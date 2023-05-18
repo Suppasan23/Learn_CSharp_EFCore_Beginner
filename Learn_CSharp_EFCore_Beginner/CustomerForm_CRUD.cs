@@ -60,6 +60,7 @@ namespace Learn_CSharp_EFCore_Beginner
                             txt.Focus();
                         }
                     }
+                    return;
                 }
                 else
                 {
@@ -163,18 +164,17 @@ namespace Learn_CSharp_EFCore_Beginner
         }
 
 
-        //////////////////////////////Execute Button////////////////////////////////////////////////////////////////////////
+        //////////////////////////////Execute Button////////////////////////////////////////////////////////////////////////////
         private byte[] imgByteArr;
         
         private void ExecuteButton_Click(object sender, EventArgs e)
         {
             DialogResult result;
-            // Transaction control
-            var tr = db.Database.BeginTransaction(); // Create, Update, Deleate
+            var tr = db.Database.BeginTransaction();//Transaction control: Create, Update, Deleate
 
             try
             {
-                if(imageHasChangeed) 
+                if(imageHasChangeed)
                 { 
                     if(!string.IsNullOrEmpty(imageFilename))
                     {
@@ -185,20 +185,70 @@ namespace Learn_CSharp_EFCore_Beginner
                     }
                 }
 
+                //VIEW//
                 if(theCRUD.ToUpper().Equals("VIEW"))
                 {
                     center.isExecuted = false;
                     Close();
                 }
-                else if(theCRUD.ToUpper().Equals("INSERT"))
+
+                //ADD//
+                else if (theCRUD.ToUpper().Equals("ADD"))
                 {
                     if(string.IsNullOrEmpty(CustomerIDTextBox.Text.Trim()) || string.IsNullOrEmpty(CompanyNameTextBox.Text.Trim()))
                     {
                         MessageBox.Show("Please fill in the required fields.", "Add new Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
-                }
+                    if(CustomerIDTextBox.Text.Trim().Length != 5)
+                    {
+                        MessageBox.Show("Customer ID must be 5 Characters", "Add new Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
 
+                    var dup = (from c in db.Customers where c.CustomerId == CustomerIDTextBox.Text.Trim() select c);//Check duplicate customer ID.
+                    if (dup.Count() > 0)
+                    {
+                        MessageBox.Show("Customer ID already taken", "Add new Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    result = MessageBox.Show("Do you want to add this new customer?", "Add new customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if(result == DialogResult.Yes) 
+                    {
+                        Customer cs = new Customer();
+                        cs.CustomerId = CustomerIDTextBox.Text.Trim();  
+                        cs.CompanyName = CompanyNameTextBox.Text.Trim();    
+                        cs.ContactName = ContactNameTextBox.Text.Trim();    
+                        cs.ContactTitle = ContactTitleTextBox.Text.Trim();  
+                        cs.Address = AddressTextBox.Text.Trim();    
+                        cs.City = CityTextBox.Text.Trim();
+                        cs.Region = RegionTextBox.Text.Trim();
+                        cs.PostalCode = PostalCodeTextBox.Text.Trim();  
+                        cs.Country = CountryTextBox.Text.Trim();    
+                        cs.Phone = PhoneTextBox.Text.Trim();    
+                        
+                        if(imageHasChangeed == true)
+                        {
+                            if(string.IsNullOrEmpty(imageFilename))
+                            {
+                                cs.Picture = imgByteArr;
+                            }
+                            else
+                            {
+                                cs.Picture = null;
+                            }
+                        }
+
+                        db.Customers.Add(cs);
+                        db.SaveChanges();   
+                        tr.Commit();
+
+                        center.isExecuted = true;
+                        MessageBox.Show("Record has been added successfully.", "ADD DATA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Close();
+                    }
+                }
             }
             catch (Exception ex)
             {
