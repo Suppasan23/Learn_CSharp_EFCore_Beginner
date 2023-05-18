@@ -114,7 +114,7 @@ namespace Learn_CSharp_EFCore_Beginner
             }
         }
 
-        //////////////////////////////Choose Image////////////////////////////////////////////////////////////////////////
+        //////////////////////////////Choose Image Button////////////////////////////////////////////////////////////////////////
         private string imageFilename;
         private bool imageHasChangeed;
 
@@ -132,8 +132,8 @@ namespace Learn_CSharp_EFCore_Beginner
                 openFileDialog1.ValidateNames = true;
                 openFileDialog1.RestoreDirectory = true;
 
-                if(openFileDialog1.ShowDialog() == DialogResult.OK) 
-                { 
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
                     PictureBox.Image = Image.FromFile(openFileDialog1.FileName);
                     imageFilename = openFileDialog1.FileName;
                     imageHasChangeed = true;
@@ -142,17 +142,17 @@ namespace Learn_CSharp_EFCore_Beginner
                 else
                 {
                     imageFilename = "";
-                    imageHasChangeed = false;   
+                    imageHasChangeed = false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Choose Image", MessageBoxButtons.OK, MessageBoxIcon.Error);  
+                MessageBox.Show("Error: " + ex.Message, "Choose Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
-        //////////////////////////////Clear Image////////////////////////////////////////////////////////////////////////
+        //////////////////////////////Clear Image Button////////////////////////////////////////////////////////////////////////
         private void ClearImageButton_Click(object sender, EventArgs e)
         {
             PictureBox.Image = null;
@@ -163,5 +163,52 @@ namespace Learn_CSharp_EFCore_Beginner
         }
 
 
+        //////////////////////////////Execute Button////////////////////////////////////////////////////////////////////////
+        private byte[] imgByteArr;
+        
+        private void ExecuteButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result;
+            // Transaction control
+            var tr = db.Database.BeginTransaction(); // Create, Update, Deleate
+
+            try
+            {
+                if(imageHasChangeed) 
+                { 
+                    if(!string.IsNullOrEmpty(imageFilename))
+                    {
+                        FileStream fs = new FileStream(imageFilename, FileMode.Open, FileAccess.Read);
+                        imgByteArr = new byte[fs.Length];
+                        fs.Read(imgByteArr, 0, Convert.ToInt32(fs.Length));
+                        fs.Close();
+                    }
+                }
+
+                if(theCRUD.ToUpper().Equals("VIEW"))
+                {
+                    center.isExecuted = false;
+                    Close();
+                }
+                else if(theCRUD.ToUpper().Equals("INSERT"))
+                {
+                    if(string.IsNullOrEmpty(CustomerIDTextBox.Text.Trim()) || string.IsNullOrEmpty(CompanyNameTextBox.Text.Trim()))
+                    {
+                        MessageBox.Show("Please fill in the required fields.", "Add new Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                tr.Rollback();
+                MessageBox.Show("Error: " + ex.Message, theCRUD + "Data Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                tr.Dispose();
+            }
+        }
     }
 }

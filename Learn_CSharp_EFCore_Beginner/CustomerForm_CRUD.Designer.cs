@@ -311,6 +311,7 @@
             ExecuteButton.TabIndex = 4;
             ExecuteButton.Text = "Execute";
             ExecuteButton.UseVisualStyleBackColor = true;
+            ExecuteButton.Click += ExecuteButton_Click;
             // 
             // openFileDialog1
             // 
