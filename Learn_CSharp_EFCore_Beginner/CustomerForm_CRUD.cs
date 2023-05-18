@@ -116,34 +116,36 @@ namespace Learn_CSharp_EFCore_Beginner
         }
 
         //////////////////////////////Choose Image Button////////////////////////////////////////////////////////////////////////
-        private string imageFilename;
+        private string imageFileName;
         private bool imageHasChangeed;
 
         private void ChooseImageButton_Click(object sender, EventArgs e)
         {
             try
             {
-                openFileDialog1.Title = "Choose a Picture";
+                openFileDialog1.Title = "Choose a picture";
                 openFileDialog1.FileName = "";
-                openFileDialog1.Filter = "Jpg, Jpeg Images|*.Jpg;*.jpeg|PNG Images|*.png|" + "All files (*.*)|*.*";
+                openFileDialog1.Filter = "Jpg, Jpeg Images|*.jpg;*.jpeg|PNG Image|*.png|" + "All files (*.*)|*.*";
 
                 openFileDialog1.AddExtension = true;
                 openFileDialog1.FilterIndex = 1;
                 openFileDialog1.Multiselect = false;
                 openFileDialog1.ValidateNames = true;
+                // openFileDialog1.InitialDirectory = MyPicture;
                 openFileDialog1.RestoreDirectory = true;
 
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     PictureBox.Image = Image.FromFile(openFileDialog1.FileName);
-                    imageFilename = openFileDialog1.FileName;
+                    imageFileName = openFileDialog1.FileName;
                     imageHasChangeed = true;
-                    PictureBox.Tag = "New Image";
+                    PictureBox.Tag = "NewImage";
                 }
                 else
                 {
-                    imageFilename = "";
+                    imageFileName = "";
                     imageHasChangeed = false;
+                    return;
                 }
             }
             catch (Exception ex)
@@ -159,13 +161,13 @@ namespace Learn_CSharp_EFCore_Beginner
             PictureBox.Image = null;
             PictureBox.Tag = "Empty";
 
-            imageFilename = "";
+            imageFileName = "";
             imageHasChangeed = true;
         }
 
 
         //////////////////////////////Execute Button////////////////////////////////////////////////////////////////////////////
-        private byte[] imgByteArr;
+        private byte[] imgToByteArr;
         
         private void ExecuteButton_Click(object sender, EventArgs e)
         {
@@ -174,13 +176,17 @@ namespace Learn_CSharp_EFCore_Beginner
 
             try
             {
-                if(imageHasChangeed)
+                if(imageHasChangeed == true)
                 { 
-                    if(!string.IsNullOrEmpty(imageFilename))
+                    if(!string.IsNullOrEmpty(imageFileName))
                     {
-                        FileStream fs = new FileStream(imageFilename, FileMode.Open, FileAccess.Read);
-                        imgByteArr = new byte[fs.Length];
-                        fs.Read(imgByteArr, 0, Convert.ToInt32(fs.Length));
+                        //Initialize a file stream to read the image file
+                        FileStream fs = new FileStream(imageFileName, FileMode.Open, FileAccess.Read);
+                        //Initialize a byte array with size of stream || Read the source file into a byte array.
+                        imgToByteArr = new byte[fs.Length];
+                        //Read data from the file stream and put into the byte array
+                        fs.Read(imgToByteArr, 0, Convert.ToInt32(fs.Length));
+                        //Close a file stream
                         fs.Close();
                     }
                 }
@@ -230,9 +236,9 @@ namespace Learn_CSharp_EFCore_Beginner
                         
                         if(imageHasChangeed == true)
                         {
-                            if(string.IsNullOrEmpty(imageFilename))
+                            if(!string.IsNullOrEmpty(imageFileName))
                             {
-                                cs.Picture = imgByteArr;
+                                cs.Picture = imgToByteArr;
                             }
                             else
                             {
@@ -249,6 +255,53 @@ namespace Learn_CSharp_EFCore_Beginner
                         Close();
                     }
                 }
+
+                //UPDATE//
+                else if (theCRUD.ToUpper().Equals("UPDATE"))
+                {
+                    result = MessageBox.Show("Do you want to save the changes you have made?", "Save Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if(result == DialogResult.Yes) 
+                    { 
+                        var cs = (from c in db.Customers
+                                  where c.CustomerId == theID
+                                  select c).FirstOrDefault();
+                        if(cs != null) 
+                        { 
+                            cs.CompanyName = CompanyNameTextBox.Text.Trim();   
+                            cs.ContactName = ContactNameTextBox.Text.Trim();    
+                            cs.ContactTitle = ContactTitleTextBox.Text.Trim();  
+                            cs.Address = AddressTextBox.Text.Trim();    
+                            cs.City = CityTextBox.Text.Trim();  
+                            cs.Region = RegionTextBox.Text.Trim();  
+                            cs.PostalCode = PostalCodeTextBox.Text.Trim();  
+                            cs.Country = CountryTextBox.Text.Trim();    
+                            cs.Phone = PhoneTextBox.Text.Trim();
+                            
+                            if(imageHasChangeed == true) 
+                            { 
+                                if(!string.IsNullOrEmpty(imageFileName)) 
+                                { 
+                                    cs.Picture = imgToByteArr;
+                                }
+                                else 
+                                {
+                                    cs.Picture = null;
+                                }
+                            }
+
+                            db.SaveChanges();
+                            tr.Commit();
+
+                            center.isExecuted = true;
+                            MessageBox.Show("Record has been Update successfully.", "UPDATE DATA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Close();
+                        }
+                    }
+
+
+                }
+
             }
             catch (Exception ex)
             {

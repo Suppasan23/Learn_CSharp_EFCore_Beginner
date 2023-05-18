@@ -61,7 +61,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip1.Location = new Point(3, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1078, 24);
+            menuStrip1.Padding = new Padding(7, 3, 0, 3);
+            menuStrip1.Size = new Size(1233, 30);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -69,41 +70,41 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addNewToolStripMenuItem, updateToolStripMenuItem, deleteToolStripMenuItem, logoutToolStripMenuItem, exitToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(46, 24);
             fileToolStripMenuItem.Text = "File";
             // 
             // addNewToolStripMenuItem
             // 
             addNewToolStripMenuItem.Name = "addNewToolStripMenuItem";
-            addNewToolStripMenuItem.Size = new Size(121, 22);
+            addNewToolStripMenuItem.Size = new Size(151, 26);
             addNewToolStripMenuItem.Text = "Add new";
             addNewToolStripMenuItem.Click += addNewToolStripMenuItem_Click;
             // 
             // updateToolStripMenuItem
             // 
             updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            updateToolStripMenuItem.Size = new Size(121, 22);
+            updateToolStripMenuItem.Size = new Size(151, 26);
             updateToolStripMenuItem.Text = "Update";
             updateToolStripMenuItem.Click += updateToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(121, 22);
+            deleteToolStripMenuItem.Size = new Size(151, 26);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(121, 22);
+            logoutToolStripMenuItem.Size = new Size(151, 26);
             logoutToolStripMenuItem.Text = "Log-out";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(121, 22);
+            exitToolStripMenuItem.Size = new Size(151, 26);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -111,13 +112,13 @@
             // 
             aboutToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutMyAPpToolStripMenuItem });
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(52, 20);
+            aboutToolStripMenuItem.Size = new Size(64, 24);
             aboutToolStripMenuItem.Text = "About";
             // 
             // aboutMyAPpToolStripMenuItem
             // 
             aboutMyAPpToolStripMenuItem.Name = "aboutMyAPpToolStripMenuItem";
-            aboutMyAPpToolStripMenuItem.Size = new Size(150, 22);
+            aboutMyAPpToolStripMenuItem.Size = new Size(187, 26);
             aboutMyAPpToolStripMenuItem.Text = "About my app";
             aboutMyAPpToolStripMenuItem.Click += aboutMyAPpToolStripMenuItem_Click;
             // 
@@ -125,9 +126,10 @@
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { StatusToolStripStatusLabel, LogInToolStripStatusLabel });
-            statusStrip1.Location = new Point(3, 825);
+            statusStrip1.Location = new Point(3, 1107);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1078, 25);
+            statusStrip1.Padding = new Padding(1, 0, 16, 0);
+            statusStrip1.Size = new Size(1233, 26);
             statusStrip1.TabIndex = 1;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -137,26 +139,26 @@
             StatusToolStripStatusLabel.ForeColor = Color.ForestGreen;
             StatusToolStripStatusLabel.Image = Properties.Resources.play_4_24;
             StatusToolStripStatusLabel.Name = "StatusToolStripStatusLabel";
-            StatusToolStripStatusLabel.Size = new Size(60, 20);
+            StatusToolStripStatusLabel.Size = new Size(70, 20);
             StatusToolStripStatusLabel.Text = "Status";
             // 
             // LogInToolStripStatusLabel
             // 
             LogInToolStripStatusLabel.Name = "LogInToolStripStatusLabel";
-            LogInToolStripStatusLabel.Size = new Size(16, 20);
+            LogInToolStripStatusLabel.Size = new Size(18, 20);
             LogInToolStripStatusLabel.Text = "...";
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.BackColor = SystemColors.Info;
             tableLayoutPanel1.ColumnCount = 8;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 310F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 114F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 114F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 114F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 114F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 354F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 149F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 149F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.Controls.Add(AddNewButton, 0, 0);
             tableLayoutPanel1.Controls.Add(UpdateButton, 1, 0);
@@ -166,22 +168,23 @@
             tableLayoutPanel1.Controls.Add(KeywordTextBox, 4, 0);
             tableLayoutPanel1.Controls.Add(label1, 6, 0);
             tableLayoutPanel1.Dock = DockStyle.Top;
-            tableLayoutPanel1.Location = new Point(3, 24);
+            tableLayoutPanel1.Location = new Point(3, 30);
+            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new Padding(2);
+            tableLayoutPanel1.Padding = new Padding(2, 3, 2, 3);
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1078, 35);
+            tableLayoutPanel1.Size = new Size(1233, 47);
             tableLayoutPanel1.TabIndex = 2;
             // 
             // AddNewButton
             // 
             AddNewButton.Dock = DockStyle.Fill;
             AddNewButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            AddNewButton.Location = new Point(3, 3);
+            AddNewButton.Location = new Point(3, 4);
             AddNewButton.Margin = new Padding(1);
             AddNewButton.Name = "AddNewButton";
-            AddNewButton.Size = new Size(98, 29);
+            AddNewButton.Size = new Size(112, 39);
             AddNewButton.TabIndex = 1;
             AddNewButton.Text = "Add New";
             AddNewButton.UseVisualStyleBackColor = true;
@@ -191,10 +194,10 @@
             // 
             UpdateButton.Dock = DockStyle.Fill;
             UpdateButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            UpdateButton.Location = new Point(103, 3);
+            UpdateButton.Location = new Point(117, 4);
             UpdateButton.Margin = new Padding(1);
             UpdateButton.Name = "UpdateButton";
-            UpdateButton.Size = new Size(98, 29);
+            UpdateButton.Size = new Size(112, 39);
             UpdateButton.TabIndex = 2;
             UpdateButton.Text = "Update";
             UpdateButton.UseVisualStyleBackColor = true;
@@ -204,10 +207,10 @@
             // 
             DeleteButton.Dock = DockStyle.Fill;
             DeleteButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            DeleteButton.Location = new Point(203, 3);
+            DeleteButton.Location = new Point(231, 4);
             DeleteButton.Margin = new Padding(1);
             DeleteButton.Name = "DeleteButton";
-            DeleteButton.Size = new Size(98, 29);
+            DeleteButton.Size = new Size(112, 39);
             DeleteButton.TabIndex = 3;
             DeleteButton.Text = "Delete";
             DeleteButton.UseVisualStyleBackColor = true;
@@ -217,10 +220,10 @@
             // 
             SearchButton.Dock = DockStyle.Fill;
             SearchButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            SearchButton.Location = new Point(303, 3);
+            SearchButton.Location = new Point(345, 4);
             SearchButton.Margin = new Padding(1);
             SearchButton.Name = "SearchButton";
-            SearchButton.Size = new Size(98, 29);
+            SearchButton.Size = new Size(112, 39);
             SearchButton.TabIndex = 4;
             SearchButton.Text = "Search";
             SearchButton.UseVisualStyleBackColor = true;
@@ -232,10 +235,10 @@
             ExportToExcelButton.Dock = DockStyle.Fill;
             ExportToExcelButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             ExportToExcelButton.ForeColor = SystemColors.Window;
-            ExportToExcelButton.Location = new Point(713, 3);
+            ExportToExcelButton.Location = new Point(813, 4);
             ExportToExcelButton.Margin = new Padding(1);
             ExportToExcelButton.Name = "ExportToExcelButton";
-            ExportToExcelButton.Size = new Size(128, 29);
+            ExportToExcelButton.Size = new Size(147, 39);
             ExportToExcelButton.TabIndex = 5;
             ExportToExcelButton.Text = "Export To Excel";
             ExportToExcelButton.UseVisualStyleBackColor = false;
@@ -245,10 +248,10 @@
             // 
             KeywordTextBox.Dock = DockStyle.Fill;
             KeywordTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            KeywordTextBox.Location = new Point(403, 3);
+            KeywordTextBox.Location = new Point(459, 4);
             KeywordTextBox.Margin = new Padding(1);
             KeywordTextBox.Name = "KeywordTextBox";
-            KeywordTextBox.Size = new Size(308, 29);
+            KeywordTextBox.Size = new Size(352, 34);
             KeywordTextBox.TabIndex = 0;
             KeywordTextBox.DoubleClick += KeywordTextBox_DoubleClick;
             KeywordTextBox.KeyDown += KeywordTextBox_KeyDown;
@@ -259,10 +262,10 @@
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.Crimson;
-            label1.Location = new Point(843, 3);
+            label1.Location = new Point(962, 4);
             label1.Margin = new Padding(1);
             label1.Name = "label1";
-            label1.Size = new Size(128, 29);
+            label1.Size = new Size(147, 39);
             label1.TabIndex = 6;
             label1.Text = "C# EFCore";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -272,27 +275,29 @@
             dataGridView1.BackgroundColor = SystemColors.Window;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 59);
+            dataGridView1.Location = new Point(3, 77);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1078, 766);
+            dataGridView1.Size = new Size(1233, 1030);
             dataGridView1.TabIndex = 7;
             dataGridView1.CellMouseClick += dataGridView1_CellMouseClick;
             dataGridView1.CellMouseDoubleClick += dataGridView1_CellMouseDoubleClick;
             // 
             // CustomerForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1084, 850);
+            ClientSize = new Size(1239, 1133);
             Controls.Add(dataGridView1);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "CustomerForm";
             Padding = new Padding(3, 0, 3, 0);
             StartPosition = FormStartPosition.CenterScreen;

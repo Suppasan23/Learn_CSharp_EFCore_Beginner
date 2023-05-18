@@ -102,15 +102,15 @@ namespace Learn_CSharp_EFCore_Beginner
 
         private void openCustomerForm_CRUD(string whichCRUD, string WhichID)
         {
-            if(whichCRUD.ToUpper().Equals("UPDATE") || whichCRUD.ToUpper().Equals("DELETE"))
+            if (whichCRUD.ToUpper().Equals("UPDATE") || whichCRUD.ToUpper().Equals("DELETE"))
             {
-                if(string.IsNullOrEmpty(WhichID.Trim())) 
+                if (string.IsNullOrEmpty(WhichID.Trim()))
                 {
-                    MessageBox.Show("ID NOT FOUND.","Open CRUD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("ID NOT FOUND.", "Open CRUD", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                if(dataGridView1.Rows.Count == 0 || dataGridView1.SelectedRows.Count == 0) 
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.SelectedRows.Count == 0)
                 {
                     MessageBox.Show("Please select an item from the list", "Open CRUD", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -120,7 +120,7 @@ namespace Learn_CSharp_EFCore_Beginner
             CustomerForm_CRUD f = new CustomerForm_CRUD(whichCRUD, WhichID);
             f.ShowDialog();
 
-            if(center.isExecuted == true)
+            if (center.isExecuted == true)
             {
                 // Refresh the main form after Executed data.
                 loadData("");
@@ -283,7 +283,7 @@ namespace Learn_CSharp_EFCore_Beginner
         private void AddNewButton_Click(object sender, EventArgs e)
         {
             whichCRUD = "ADD";
-            openCustomerForm_CRUD(whichCRUD,"");
+            openCustomerForm_CRUD(whichCRUD, "");
         }
 
         /////////////////////////////////Update Button/////////////////////////////////////////////////////////////////////////////////////////////
