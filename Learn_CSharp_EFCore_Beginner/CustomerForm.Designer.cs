@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             addNewToolStripMenuItem = new ToolStripMenuItem();
@@ -49,10 +50,16 @@
             KeywordTextBox = new TextBox();
             label1 = new Label();
             dataGridView1 = new DataGridView();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            addNewToolStripMenuItem1 = new ToolStripMenuItem();
+            updateToolStripMenuItem1 = new ToolStripMenuItem();
+            deleteToolStripMenuItem1 = new ToolStripMenuItem();
+            viewToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -286,6 +293,40 @@
             dataGridView1.TabIndex = 7;
             dataGridView1.CellMouseClick += dataGridView1_CellMouseClick;
             dataGridView1.CellMouseDoubleClick += dataGridView1_CellMouseDoubleClick;
+            dataGridView1.CellMouseDown += dataGridView1_CellMouseDown;
+            dataGridView1.MouseClick += dataGridView1_MouseClick;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { addNewToolStripMenuItem1, updateToolStripMenuItem1, deleteToolStripMenuItem1, viewToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(141, 100);
+            contextMenuStrip1.ItemClicked += contextMenuStrip1_ItemClicked;
+            // 
+            // addNewToolStripMenuItem1
+            // 
+            addNewToolStripMenuItem1.Name = "addNewToolStripMenuItem1";
+            addNewToolStripMenuItem1.Size = new Size(140, 24);
+            addNewToolStripMenuItem1.Text = "Add New";
+            // 
+            // updateToolStripMenuItem1
+            // 
+            updateToolStripMenuItem1.Name = "updateToolStripMenuItem1";
+            updateToolStripMenuItem1.Size = new Size(140, 24);
+            updateToolStripMenuItem1.Text = "Update";
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            deleteToolStripMenuItem1.Size = new Size(140, 24);
+            deleteToolStripMenuItem1.Text = "Delete";
+            // 
+            // viewToolStripMenuItem
+            // 
+            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            viewToolStripMenuItem.Size = new Size(140, 24);
+            viewToolStripMenuItem.Text = "View";
             // 
             // CustomerForm
             // 
@@ -310,6 +351,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -337,5 +379,10 @@
         private TextBox KeywordTextBox;
         private Label label1;
         private DataGridView dataGridView1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem addNewToolStripMenuItem1;
+        private ToolStripMenuItem updateToolStripMenuItem1;
+        private ToolStripMenuItem deleteToolStripMenuItem1;
+        private ToolStripMenuItem viewToolStripMenuItem;
     }
 }

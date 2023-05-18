@@ -25,7 +25,7 @@ namespace Learn_CSharp_EFCore_Beginner
             this.theID = WhichID;
             this.CustomerIDTextBox.MaxLength = 5;
 
-            ExecuteButton.Text = this.theCRUD;
+            ExecuteButton.Text = this.theCRUD; //<--- VIEW, INSERT, UPDATE, DELETE
         }
 
         /////////////////////////////////Load////////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +40,9 @@ namespace Learn_CSharp_EFCore_Beginner
                     Text += " " + "(Read Only)";
                     ChooseImageButton.Enabled = false;
                     ClearImageButton.Enabled = false;
-                    ExecuteButton.Enabled = false;
+                    ExecuteButton.Enabled = true;
+                    ExecuteButton.Text = "Close";
+
 
                     foreach (var txt in this.Controls.OfType<TextBox>())
                     {
@@ -48,9 +50,9 @@ namespace Learn_CSharp_EFCore_Beginner
                     }
                 }
 
-                if (string.IsNullOrEmpty(this.theID))
+                if (string.IsNullOrEmpty(this.theID))// ADD NEW
                 {
-                    // ADD NEW
+                    
                     CustomerIDTextBox.Enabled = true;
                     foreach (var txt in this.Controls.OfType<TextBox>())
                     {
@@ -62,11 +64,9 @@ namespace Learn_CSharp_EFCore_Beginner
                     }
                     return;
                 }
-                else
+                else//UPDATE , DELETE , VIEW
                 {
-                    //UPDATE , DELETE , VIEW
                     CustomerIDTextBox.Enabled = false;
-
                 }
 
 
@@ -252,7 +252,7 @@ namespace Learn_CSharp_EFCore_Beginner
 
                         center.isExecuted = true;
                         MessageBox.Show("Record has been added successfully.", "ADD DATA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Close();
+                        this.Close();
                     }
                 }
 
@@ -295,11 +295,68 @@ namespace Learn_CSharp_EFCore_Beginner
 
                             center.isExecuted = true;
                             MessageBox.Show("Record has been Update successfully.", "UPDATE DATA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Close();
+                            this.Close();
                         }
                     }
+                }
 
+                //DELETE// 
+                else if (theCRUD.ToUpper().Equals("DELETE"))
+                {
+                    result = MessageBox.Show(theID +"--" + "Do you want to delete the selected record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if(result == DialogResult.Yes) 
+                    {
 
+                        //(จำเป็นต้องลบข้อมูลออกจาก 3 Table คือ Customers,Orders และ OrderDetails เนื่องจากข้อมูลถูกยึดโยงกันอยู่)
+
+                        //1.Delete in table Customers
+                        var cs = (from c in db.Customers
+                                  where c.CustomerId == theID
+                                  select c).FirstOrDefault();
+                        if(cs != null) 
+                        {
+                            db.Customers.Remove(cs);
+                        }
+
+                        //2.Delete in table Orders
+                        var idToBeDeleted1 = new List<int>();
+                        var idToBeDeleted2 = new List<int>();
+
+                        var od = (from os in db.Orders
+                                  where os.CustomerId == theID
+                                  select os);
+                        if(od != null ) 
+                        { 
+                            foreach(var oo in od) 
+                            {
+                                idToBeDeleted1.Add(oo.OrderId);
+                                db.Orders.Remove(oo);
+                            }
+                        }
+
+                        //3.Delete in table OrderDetails
+                        var ods = (from oss in db.OrderDetails
+                                  where idToBeDeleted1.Contains(oss.OrderId)
+                                  select oss);
+                        if (ods != null)
+                        {
+                            foreach (var oos in ods)
+                            {
+                                idToBeDeleted2.Add(oos.OrderId);
+                                db.OrderDetails.Remove(oos);
+                            }
+                        }
+
+                        db.SaveChanges();
+                        tr.Commit();
+                        idToBeDeleted1.Clear();
+                        idToBeDeleted2.Clear();
+
+                        center.isExecuted = true;
+                        MessageBox.Show("Records have been deleted successfully.", "DELETE DATA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+
+                    }
                 }
 
             }

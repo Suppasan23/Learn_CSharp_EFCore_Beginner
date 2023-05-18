@@ -341,6 +341,64 @@ namespace Learn_CSharp_EFCore_Beginner
             Application.Exit();
         }
 
+        /////////////////////////////////DataGridView1 Cell Mouse Down//////////////////////////////////////////////////////////////////////////
+        private bool cancelShowContextMenu = false;
+        private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                cancelShowContextMenu = false;
 
+                if (e.Button == MouseButtons.Right)
+                {
+                    dataGridView1.Rows[e.RowIndex].Selected = true;
+                    string? v = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                    WhichID = v;
+                }
+            }
+            else
+            {
+                cancelShowContextMenu = true;
+            }
+
+        }
+
+
+        /////////////////////////////////DataGridView1 Mouse Click//////////////////////////////////////////////////////////////////////////
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (cancelShowContextMenu == true)
+            {
+                return;
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
+        }
+
+
+        /////////////////////////////////ContextMenuStrip1 Item Click//////////////////////////////////////////////////
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.ToString())
+            {
+                case "Add New":
+                    AddNewButton.PerformClick();
+                    break;
+                case "Update":
+                    UpdateButton.PerformClick();
+                    break;
+                case "Delete":
+                    DeleteButton.PerformClick();
+                    break;
+                case "View":
+                    whichCRUD = "VIEW";
+                    openCustomerForm_CRUD(whichCRUD, WhichID);
+                    break;
+
+            }
+        }
     }
 }
