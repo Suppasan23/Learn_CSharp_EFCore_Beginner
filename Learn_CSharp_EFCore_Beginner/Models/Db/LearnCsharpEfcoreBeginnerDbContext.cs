@@ -69,15 +69,19 @@ public partial class LearnCsharpEfcoreBeginnerDbContext : DbContext
 
     public virtual DbSet<Territory> Territories { get; set; }
 
+    public virtual DbSet<User> Users { get; set; }
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    { 
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//=> optionsBuilder.UseSqlServer("Server=localhost;Database=Learn_CSharp_EFCore_Beginner_DB;User ID=sa;Password=root;TrustServerCertificate=true;");
-        if(!optionsBuilder.IsConfigured)
+    {
+        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        //=> optionsBuilder.UseSqlServer("Server=localhost;Database=Learn_CSharp_EFCore_Beginner_DB;User ID=sa;Password=root;TrustServerCertificate=true;");
+        if (!optionsBuilder.IsConfigured)
         {
             optionsBuilder.UseSqlServer(System.Configuration.ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
         }
     }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -605,6 +609,16 @@ public partial class LearnCsharpEfcoreBeginnerDbContext : DbContext
                 .HasForeignKey(d => d.RegionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Territories_Region");
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasIndex(e => e.UserName, "IX_UserName").IsUnique();
+
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.Property(e => e.FullName).HasMaxLength(50);
+            entity.Property(e => e.Password).HasMaxLength(50);
+            entity.Property(e => e.UserName).HasMaxLength(50);
         });
 
         OnModelCreatingPartial(modelBuilder);

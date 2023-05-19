@@ -52,7 +52,7 @@ namespace Learn_CSharp_EFCore_Beginner
 
                 if (string.IsNullOrEmpty(this.theID))// ADD NEW
                 {
-                    
+
                     CustomerIDTextBox.Enabled = true;
                     foreach (var txt in this.Controls.OfType<TextBox>())
                     {
@@ -168,7 +168,7 @@ namespace Learn_CSharp_EFCore_Beginner
 
         //////////////////////////////Execute Button////////////////////////////////////////////////////////////////////////////
         private byte[] imgToByteArr;
-        
+
         private void ExecuteButton_Click(object sender, EventArgs e)
         {
             DialogResult result;
@@ -176,9 +176,9 @@ namespace Learn_CSharp_EFCore_Beginner
 
             try
             {
-                if(imageHasChangeed == true)
-                { 
-                    if(!string.IsNullOrEmpty(imageFileName))
+                if (imageHasChangeed == true)
+                {
+                    if (!string.IsNullOrEmpty(imageFileName))
                     {
                         //Initialize a file stream to read the image file
                         FileStream fs = new FileStream(imageFileName, FileMode.Open, FileAccess.Read);
@@ -192,7 +192,7 @@ namespace Learn_CSharp_EFCore_Beginner
                 }
 
                 //VIEW//
-                if(theCRUD.ToUpper().Equals("VIEW"))
+                if (theCRUD.ToUpper().Equals("VIEW"))
                 {
                     center.isExecuted = false;
                     Close();
@@ -201,12 +201,12 @@ namespace Learn_CSharp_EFCore_Beginner
                 //ADD//
                 else if (theCRUD.ToUpper().Equals("ADD"))
                 {
-                    if(string.IsNullOrEmpty(CustomerIDTextBox.Text.Trim()) || string.IsNullOrEmpty(CompanyNameTextBox.Text.Trim()))
+                    if (string.IsNullOrEmpty(CustomerIDTextBox.Text.Trim()) || string.IsNullOrEmpty(CompanyNameTextBox.Text.Trim()))
                     {
                         MessageBox.Show("Please fill in the required fields.", "Add new Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
-                    if(CustomerIDTextBox.Text.Trim().Length != 5)
+                    if (CustomerIDTextBox.Text.Trim().Length != 5)
                     {
                         MessageBox.Show("Customer ID must be 5 Characters", "Add new Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
@@ -220,23 +220,23 @@ namespace Learn_CSharp_EFCore_Beginner
                     }
 
                     result = MessageBox.Show("Do you want to add this new customer?", "Add new customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if(result == DialogResult.Yes) 
+                    if (result == DialogResult.Yes)
                     {
                         Customer cs = new Customer();
-                        cs.CustomerId = CustomerIDTextBox.Text.Trim();  
-                        cs.CompanyName = CompanyNameTextBox.Text.Trim();    
-                        cs.ContactName = ContactNameTextBox.Text.Trim();    
-                        cs.ContactTitle = ContactTitleTextBox.Text.Trim();  
-                        cs.Address = AddressTextBox.Text.Trim();    
+                        cs.CustomerId = CustomerIDTextBox.Text.Trim();
+                        cs.CompanyName = CompanyNameTextBox.Text.Trim();
+                        cs.ContactName = ContactNameTextBox.Text.Trim();
+                        cs.ContactTitle = ContactTitleTextBox.Text.Trim();
+                        cs.Address = AddressTextBox.Text.Trim();
                         cs.City = CityTextBox.Text.Trim();
                         cs.Region = RegionTextBox.Text.Trim();
-                        cs.PostalCode = PostalCodeTextBox.Text.Trim();  
-                        cs.Country = CountryTextBox.Text.Trim();    
-                        cs.Phone = PhoneTextBox.Text.Trim();    
-                        
-                        if(imageHasChangeed == true)
+                        cs.PostalCode = PostalCodeTextBox.Text.Trim();
+                        cs.Country = CountryTextBox.Text.Trim();
+                        cs.Phone = PhoneTextBox.Text.Trim();
+
+                        if (imageHasChangeed == true)
                         {
-                            if(!string.IsNullOrEmpty(imageFileName))
+                            if (!string.IsNullOrEmpty(imageFileName))
                             {
                                 cs.Picture = imgToByteArr;
                             }
@@ -247,7 +247,7 @@ namespace Learn_CSharp_EFCore_Beginner
                         }
 
                         db.Customers.Add(cs);
-                        db.SaveChanges();   
+                        db.SaveChanges();
                         tr.Commit();
 
                         center.isExecuted = true;
@@ -261,30 +261,30 @@ namespace Learn_CSharp_EFCore_Beginner
                 {
                     result = MessageBox.Show("Do you want to save the changes you have made?", "Save Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if(result == DialogResult.Yes) 
-                    { 
+                    if (result == DialogResult.Yes)
+                    {
                         var cs = (from c in db.Customers
                                   where c.CustomerId == theID
                                   select c).FirstOrDefault();
-                        if(cs != null) 
-                        { 
-                            cs.CompanyName = CompanyNameTextBox.Text.Trim();   
-                            cs.ContactName = ContactNameTextBox.Text.Trim();    
-                            cs.ContactTitle = ContactTitleTextBox.Text.Trim();  
-                            cs.Address = AddressTextBox.Text.Trim();    
-                            cs.City = CityTextBox.Text.Trim();  
-                            cs.Region = RegionTextBox.Text.Trim();  
-                            cs.PostalCode = PostalCodeTextBox.Text.Trim();  
-                            cs.Country = CountryTextBox.Text.Trim();    
+                        if (cs != null)
+                        {
+                            cs.CompanyName = CompanyNameTextBox.Text.Trim();
+                            cs.ContactName = ContactNameTextBox.Text.Trim();
+                            cs.ContactTitle = ContactTitleTextBox.Text.Trim();
+                            cs.Address = AddressTextBox.Text.Trim();
+                            cs.City = CityTextBox.Text.Trim();
+                            cs.Region = RegionTextBox.Text.Trim();
+                            cs.PostalCode = PostalCodeTextBox.Text.Trim();
+                            cs.Country = CountryTextBox.Text.Trim();
                             cs.Phone = PhoneTextBox.Text.Trim();
-                            
-                            if(imageHasChangeed == true) 
-                            { 
-                                if(!string.IsNullOrEmpty(imageFileName)) 
-                                { 
+
+                            if (imageHasChangeed == true)
+                            {
+                                if (!string.IsNullOrEmpty(imageFileName))
+                                {
                                     cs.Picture = imgToByteArr;
                                 }
-                                else 
+                                else
                                 {
                                     cs.Picture = null;
                                 }
@@ -303,8 +303,8 @@ namespace Learn_CSharp_EFCore_Beginner
                 //DELETE// 
                 else if (theCRUD.ToUpper().Equals("DELETE"))
                 {
-                    result = MessageBox.Show(theID +"--" + "Do you want to delete the selected record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if(result == DialogResult.Yes) 
+                    result = MessageBox.Show(theID + "--" + "Do you want to delete the selected record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
                     {
 
                         //(จำเป็นต้องลบข้อมูลออกจาก 3 Table คือ Customers,Orders และ OrderDetails เนื่องจากข้อมูลถูกยึดโยงกันอยู่)
@@ -313,7 +313,7 @@ namespace Learn_CSharp_EFCore_Beginner
                         var cs = (from c in db.Customers
                                   where c.CustomerId == theID
                                   select c).FirstOrDefault();
-                        if(cs != null) 
+                        if (cs != null)
                         {
                             db.Customers.Remove(cs);
                         }
@@ -325,9 +325,9 @@ namespace Learn_CSharp_EFCore_Beginner
                         var od = (from os in db.Orders
                                   where os.CustomerId == theID
                                   select os);
-                        if(od != null ) 
-                        { 
-                            foreach(var oo in od) 
+                        if (od != null)
+                        {
+                            foreach (var oo in od)
                             {
                                 idToBeDeleted1.Add(oo.OrderId);
                                 db.Orders.Remove(oo);
@@ -336,8 +336,8 @@ namespace Learn_CSharp_EFCore_Beginner
 
                         //3.Delete in table OrderDetails
                         var ods = (from oss in db.OrderDetails
-                                  where idToBeDeleted1.Contains(oss.OrderId)
-                                  select oss);
+                                   where idToBeDeleted1.Contains(oss.OrderId)
+                                   select oss);
                         if (ods != null)
                         {
                             foreach (var oos in ods)

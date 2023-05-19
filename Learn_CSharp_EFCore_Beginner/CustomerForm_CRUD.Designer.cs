@@ -98,7 +98,7 @@
             AddressTextBox.Location = new Point(141, 187);
             AddressTextBox.Name = "AddressTextBox";
             AddressTextBox.Size = new Size(330, 23);
-            AddressTextBox.TabIndex = 2;
+            AddressTextBox.TabIndex = 5;
             // 
             // CityLabel
             // 
@@ -116,7 +116,7 @@
             CityTextBox.Location = new Point(141, 216);
             CityTextBox.Name = "CityTextBox";
             CityTextBox.Size = new Size(330, 23);
-            CityTextBox.TabIndex = 2;
+            CityTextBox.TabIndex = 6;
             // 
             // RegionLabel
             // 
@@ -134,7 +134,7 @@
             RegionTextBox.Location = new Point(141, 245);
             RegionTextBox.Name = "RegionTextBox";
             RegionTextBox.Size = new Size(330, 23);
-            RegionTextBox.TabIndex = 2;
+            RegionTextBox.TabIndex = 7;
             // 
             // PostalCodeLabel
             // 
@@ -152,7 +152,7 @@
             PostalCodeTextBox.Location = new Point(141, 274);
             PostalCodeTextBox.Name = "PostalCodeTextBox";
             PostalCodeTextBox.Size = new Size(330, 23);
-            PostalCodeTextBox.TabIndex = 2;
+            PostalCodeTextBox.TabIndex = 8;
             // 
             // CustomerIDLabel
             // 
@@ -170,7 +170,7 @@
             CustomerIDTextBox.Location = new Point(141, 71);
             CustomerIDTextBox.Name = "CustomerIDTextBox";
             CustomerIDTextBox.Size = new Size(330, 23);
-            CustomerIDTextBox.TabIndex = 2;
+            CustomerIDTextBox.TabIndex = 1;
             // 
             // ContactNameLabel
             // 
@@ -198,7 +198,7 @@
             ContactNameTextBox.Location = new Point(141, 129);
             ContactNameTextBox.Name = "ContactNameTextBox";
             ContactNameTextBox.Size = new Size(330, 23);
-            ContactNameTextBox.TabIndex = 2;
+            ContactNameTextBox.TabIndex = 3;
             // 
             // CompanyNameTextBox
             // 
@@ -224,7 +224,7 @@
             ContactTitleTextBox.Location = new Point(141, 158);
             ContactTitleTextBox.Name = "ContactTitleTextBox";
             ContactTitleTextBox.Size = new Size(330, 23);
-            ContactTitleTextBox.TabIndex = 2;
+            ContactTitleTextBox.TabIndex = 4;
             // 
             // CountryLabel
             // 
@@ -242,7 +242,7 @@
             CountryTextBox.Location = new Point(141, 303);
             CountryTextBox.Name = "CountryTextBox";
             CountryTextBox.Size = new Size(330, 23);
-            CountryTextBox.TabIndex = 2;
+            CountryTextBox.TabIndex = 9;
             // 
             // PhoneLabel
             // 
@@ -260,7 +260,7 @@
             PhoneTextBox.Location = new Point(141, 332);
             PhoneTextBox.Name = "PhoneTextBox";
             PhoneTextBox.Size = new Size(330, 23);
-            PhoneTextBox.TabIndex = 2;
+            PhoneTextBox.TabIndex = 10;
             // 
             // PictureGroupBox
             // 
@@ -288,7 +288,7 @@
             ChooseImageButton.Location = new Point(321, 389);
             ChooseImageButton.Name = "ChooseImageButton";
             ChooseImageButton.Size = new Size(150, 55);
-            ChooseImageButton.TabIndex = 4;
+            ChooseImageButton.TabIndex = 11;
             ChooseImageButton.Text = "Choose Image";
             ChooseImageButton.UseVisualStyleBackColor = true;
             ChooseImageButton.Click += ChooseImageButton_Click;
@@ -298,7 +298,7 @@
             ClearImageButton.Location = new Point(321, 485);
             ClearImageButton.Name = "ClearImageButton";
             ClearImageButton.Size = new Size(150, 55);
-            ClearImageButton.TabIndex = 4;
+            ClearImageButton.TabIndex = 12;
             ClearImageButton.Text = "Clear Image";
             ClearImageButton.UseVisualStyleBackColor = true;
             ClearImageButton.Click += ClearImageButton_Click;
@@ -308,7 +308,7 @@
             ExecuteButton.Location = new Point(321, 581);
             ExecuteButton.Name = "ExecuteButton";
             ExecuteButton.Size = new Size(150, 55);
-            ExecuteButton.TabIndex = 4;
+            ExecuteButton.TabIndex = 13;
             ExecuteButton.Text = "Execute";
             ExecuteButton.UseVisualStyleBackColor = true;
             ExecuteButton.Click += ExecuteButton_Click;
