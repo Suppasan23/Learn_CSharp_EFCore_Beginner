@@ -17,15 +17,22 @@ namespace Learn_CSharp_EFCore_Beginner
         public CustomerForm()
         {
             InitializeComponent();
+
+
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView1.ColumnHeadersHeight = 50;
             this.Size = new Size(1100, 900);
+
+            center.DoubleBuffered(dataGridView1, true);
         }
 
         private void CustomerForm_Load(object sender, EventArgs e)
         {
+            StatusToolStripStatusLabel.Text = string.Format("Hello,{0}", center.CurrentFullName);
             loadData("");
         }
 
@@ -49,6 +56,7 @@ namespace Learn_CSharp_EFCore_Beginner
                        select new
                        {
                            CustomerId = c.CustomerId,
+                           Picture = c.Picture,
                            CompanyName = c.CompanyName,
                            ContactName = c.ContactName,
                            ContactTitle = c.ContactTitle,
@@ -64,19 +72,73 @@ namespace Learn_CSharp_EFCore_Beginner
                 if (data.Count() > 0)
                 {
                     dataGridView1.DataSource = data.ToList();
+
                     if (dataGridView1.Rows.Count > 0)
                     {
+
+                        foreach (DataGridViewColumn col in dataGridView1.Columns)
+                        {
+                            if (col.GetType() == typeof(DataGridViewImageColumn))
+                            {
+                                col.DefaultCellStyle.NullValue = null;
+
+                                foreach (DataGridViewRow row in dataGridView1.Rows)
+                                {
+                                    DataGridViewImageCell cell = (DataGridViewImageCell)row.Cells[1];
+
+                                    cell.ImageLayout = DataGridViewImageCellLayout.Stretch;
+
+                                    cell.Description = "Stretched";
+
+                                    for (int i = 0; i < row.Cells.Count; i++)
+                                    {
+                                        if (row.Cells[1].Value != null && row.Cells[1].Value != DBNull.Value && !string.IsNullOrEmpty(row.Cells[1].Value.ToString()))
+                                        {
+                                            row.Height = 135;
+                                        }
+                                        else
+                                        {
+                                            row.Height = 40;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                         dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
                         dataGridView1.Columns[0].HeaderText = "Customer ID";
-                        dataGridView1.Columns[1].HeaderText = "Company Name";
-                        dataGridView1.Columns[2].HeaderText = "Contact Name";
-                        dataGridView1.Columns[3].HeaderText = "Contact Title";
-                        dataGridView1.Columns[4].HeaderText = "Address";
-                        dataGridView1.Columns[5].HeaderText = "City";
-                        dataGridView1.Columns[6].HeaderText = "Region";
-                        dataGridView1.Columns[7].HeaderText = "Postal Code";
-                        dataGridView1.Columns[8].HeaderText = "Country";
-                        dataGridView1.Columns[9].HeaderText = "Phone";
+                        dataGridView1.Columns[0].Width = 100;
+
+                        dataGridView1.Columns[1].HeaderText = "Picture";
+                        dataGridView1.Columns[1].Width = 135;
+
+                        dataGridView1.Columns[2].HeaderText = "Company Name";
+                        dataGridView1.Columns[2].Width = 200;
+
+                        dataGridView1.Columns[3].HeaderText = "Contact Name";
+                        dataGridView1.Columns[3].Width = 200;
+
+                        dataGridView1.Columns[4].HeaderText = "Contact Title";
+                        dataGridView1.Columns[4].Width = 200;
+
+                        dataGridView1.Columns[5].HeaderText = "Address";
+                        dataGridView1.Columns[4].Width = 200;
+
+                        dataGridView1.Columns[6].HeaderText = "City";
+                        dataGridView1.Columns[6].Width = 200;
+
+
+                        dataGridView1.Columns[7].HeaderText = "Region";
+                        dataGridView1.Columns[7].Width = 100;
+
+                        dataGridView1.Columns[8].HeaderText = "Postal Code";
+                        dataGridView1.Columns[8].Width = 200;
+
+                        dataGridView1.Columns[9].HeaderText = "Country";
+                        dataGridView1.Columns[9].Width = 200;
+
+                        dataGridView1.Columns[10].HeaderText = "Phone";
+                        dataGridView1.Columns[10].Width = 200;
                     }
                     setupDataTable();
                     foreach (var cs in data)
@@ -329,7 +391,20 @@ namespace Learn_CSharp_EFCore_Beginner
         /////////////////////////////////Log-Out Button/////////////////////////////////////////////////////////////////////////////////////////////
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO
+            closeMode = "Log-out";
+            string msg = "Are yot sure you want to log-out?";
+            DialogResult result = MessageBox.Show(msg, "Log-out", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                //Close the main form
+                Close();
+
+                //Show the Log-in Form
+                LoginForm f = new LoginForm();
+                f.Closed += (s, e) => this.Close();
+                f.Show();
+            }
         }
 
         /////////////////////////////////Exit Button/////////////////////////////////////////////////////////////////////////////////////////////
@@ -343,6 +418,9 @@ namespace Learn_CSharp_EFCore_Beginner
 
         /////////////////////////////////DataGridView1 Cell Mouse Down//////////////////////////////////////////////////////////////////////////
         private bool cancelShowContextMenu = false;
+
+        public object DataGridViewImageCellLaout { get; private set; }
+
         private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex != -1)
@@ -399,6 +477,22 @@ namespace Learn_CSharp_EFCore_Beginner
                     break;
 
             }
+        }
+
+        private void CustomerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            center.CurrentUserID = string.Empty;
+            center.CurrentUserName = string.Empty;
+            center.CurrentFullName = string.Empty;
+
+            if (closeMode.Equals("Log-out") || closeMode.Equals("Exit"))
+            {
+                return;
+            }
+
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+
         }
     }
 }

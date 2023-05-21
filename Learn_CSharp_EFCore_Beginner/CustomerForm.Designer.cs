@@ -343,6 +343,7 @@
             Padding = new Padding(3, 0, 3, 0);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Customer Form";
+            FormClosing += CustomerForm_FormClosing;
             Load += CustomerForm_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

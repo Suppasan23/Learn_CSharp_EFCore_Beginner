@@ -44,10 +44,12 @@
             // 
             // statusStrip1
             // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 168);
+            statusStrip1.Location = new Point(0, 227);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(491, 22);
+            statusStrip1.Padding = new Padding(1, 0, 16, 0);
+            statusStrip1.Size = new Size(561, 26);
             statusStrip1.TabIndex = 0;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -56,16 +58,17 @@
             toolStripStatusLabel1.ForeColor = Color.Crimson;
             toolStripStatusLabel1.Image = Properties.Resources.play_4_24;
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(55, 17);
+            toolStripStatusLabel1.Size = new Size(69, 20);
             toolStripStatusLabel1.Text = "Status";
             // 
             // pictureBox1
             // 
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Image = Properties.Resources.key;
-            pictureBox1.Location = new Point(12, 7);
+            pictureBox1.Location = new Point(14, 9);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(155, 155);
+            pictureBox1.Size = new Size(177, 206);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -73,60 +76,68 @@
             // UserNameLabel
             // 
             UserNameLabel.AutoSize = true;
-            UserNameLabel.Location = new Point(179, 15);
+            UserNameLabel.Location = new Point(205, 20);
             UserNameLabel.Name = "UserNameLabel";
-            UserNameLabel.Size = new Size(65, 15);
+            UserNameLabel.Size = new Size(81, 20);
             UserNameLabel.TabIndex = 2;
             UserNameLabel.Text = "UserName:";
             // 
             // UserNameTextBox
             // 
-            UserNameTextBox.Location = new Point(247, 12);
+            UserNameTextBox.Location = new Point(282, 16);
+            UserNameTextBox.Margin = new Padding(3, 4, 3, 4);
             UserNameTextBox.Name = "UserNameTextBox";
-            UserNameTextBox.Size = new Size(233, 23);
+            UserNameTextBox.Size = new Size(266, 27);
             UserNameTextBox.TabIndex = 1;
             // 
             // PasswordTextBox
             // 
-            PasswordTextBox.Location = new Point(247, 45);
+            PasswordTextBox.Location = new Point(282, 60);
+            PasswordTextBox.Margin = new Padding(3, 4, 3, 4);
             PasswordTextBox.Name = "PasswordTextBox";
-            PasswordTextBox.Size = new Size(233, 23);
+            PasswordTextBox.Size = new Size(266, 27);
             PasswordTextBox.TabIndex = 2;
             PasswordTextBox.UseSystemPasswordChar = true;
             // 
             // PasswordLabel
             // 
             PasswordLabel.AutoSize = true;
-            PasswordLabel.Location = new Point(184, 48);
+            PasswordLabel.Location = new Point(210, 64);
             PasswordLabel.Name = "PasswordLabel";
-            PasswordLabel.Size = new Size(60, 15);
+            PasswordLabel.Size = new Size(73, 20);
             PasswordLabel.TabIndex = 2;
             PasswordLabel.Text = "Password:";
             // 
             // ShowHidePoasswordCheckBox
             // 
             ShowHidePoasswordCheckBox.AutoSize = true;
-            ShowHidePoasswordCheckBox.Location = new Point(247, 78);
+            ShowHidePoasswordCheckBox.Location = new Point(282, 104);
+            ShowHidePoasswordCheckBox.Margin = new Padding(3, 4, 3, 4);
             ShowHidePoasswordCheckBox.Name = "ShowHidePoasswordCheckBox";
-            ShowHidePoasswordCheckBox.Size = new Size(108, 19);
+            ShowHidePoasswordCheckBox.Size = new Size(132, 24);
             ShowHidePoasswordCheckBox.TabIndex = 3;
             ShowHidePoasswordCheckBox.Text = "Show Password";
             ShowHidePoasswordCheckBox.UseVisualStyleBackColor = true;
+            ShowHidePoasswordCheckBox.CheckedChanged += ShowHidePoasswordCheckBox_CheckedChanged;
             // 
             // LogInButton
             // 
-            LogInButton.Location = new Point(247, 113);
+            LogInButton.Location = new Point(282, 151);
+            LogInButton.Margin = new Padding(3, 4, 3, 4);
             LogInButton.Name = "LogInButton";
-            LogInButton.Size = new Size(115, 49);
+            LogInButton.Size = new Size(131, 65);
             LogInButton.TabIndex = 4;
             LogInButton.Text = "LogIn";
             LogInButton.UseVisualStyleBackColor = true;
+            LogInButton.Click += LogInButton_Click;
+            LogInButton.Enter += LogInButton_Enter;
             // 
             // CancelButton
             // 
-            CancelButton.Location = new Point(365, 113);
+            CancelButton.Location = new Point(417, 151);
+            CancelButton.Margin = new Padding(3, 4, 3, 4);
             CancelButton.Name = "CancelButton";
-            CancelButton.Size = new Size(115, 49);
+            CancelButton.Size = new Size(131, 65);
             CancelButton.TabIndex = 5;
             CancelButton.Text = "Cancel";
             CancelButton.UseVisualStyleBackColor = true;
@@ -135,9 +146,9 @@
             // LoginForm
             // 
             AcceptButton = LogInButton;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(491, 190);
+            ClientSize = new Size(561, 253);
             ControlBox = false;
             Controls.Add(CancelButton);
             Controls.Add(LogInButton);
@@ -148,6 +159,7 @@
             Controls.Add(UserNameLabel);
             Controls.Add(pictureBox1);
             Controls.Add(statusStrip1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login Form";
